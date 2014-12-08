@@ -30,8 +30,6 @@
 */
 
 #import "KxAlert.h"
-#import "UIImage+KxUtils.h"
-#import "UIColor+KxUtils.h"
 #import "KxColorPallete.h"
 
 ////////////////////////////////////////////////////////////////////////////////
