@@ -144,6 +144,35 @@
     return [calendar dateFromComponents:ymd];
 }
 
+- (NSDate *) beginOfMonth
+{
+    NSDateComponents *comp = self.YMDhms_GMT;
+    return [NSDate year:comp.year
+                  month:comp.month
+                    day:1
+                   hour:0
+                 minute:0
+                 second:0
+               timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+}
+
+- (NSDate *) endOfMonth
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    const NSRange daysRange = [cal rangeOfUnit:NSDayCalendarUnit
+                                        inUnit:NSMonthCalendarUnit
+                                       forDate:self];
+    
+    NSDateComponents *comp = self.YMDhms_GMT;
+    return [NSDate year:comp.year
+                  month:comp.month
+                    day:daysRange.length
+                   hour:23
+                 minute:59
+                 second:59
+               timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+}
+
 - (BOOL) isSameDay:(NSDate *)other
 {
     NSDateComponents *l = self.YMDhms;

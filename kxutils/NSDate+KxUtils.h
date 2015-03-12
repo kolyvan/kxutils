@@ -60,6 +60,8 @@
               seconds:(NSInteger)seconds;
 
 - (NSDate *) midnight;
+- (NSDate *) beginOfMonth;
+- (NSDate *) endOfMonth;
 
 - (BOOL) isSameDay:(NSDate *)other;
 - (BOOL) isToday;

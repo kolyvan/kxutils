@@ -146,6 +146,18 @@
     XCTAssertTrue(_foolsDay.midnight.second == 0);
 }
 
+- (void) testMonth {
+
+    XCTAssertTrue(_today.beginOfMonth.YMDhms_GMT.day == 1);
+    XCTAssertTrue(_today.beginOfMonth.YMDhms_GMT.month == _today.YMDhms_GMT.month);
+    XCTAssertTrue(_today.endOfMonth.YMDhms_GMT.month == _today.YMDhms_GMT.month);
+
+    XCTAssertTrue(_foolsDay.beginOfMonth.YMDhms_GMT.day == 1);
+    XCTAssertTrue(_foolsDay.endOfMonth.YMDhms_GMT.day == 30);
+    XCTAssertTrue(_foolsDay.beginOfMonth.YMDhms_GMT.month == 3);
+    XCTAssertTrue(_foolsDay.endOfMonth.YMDhms_GMT.month == 3);
+}
+
 - (void) testDaysBetween {
     
     XCTAssertTrue([_foolsDay daysBetweenDate:[_foolsDay addDays:+40]] == 40);
