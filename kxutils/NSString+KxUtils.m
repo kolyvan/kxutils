@@ -216,6 +216,99 @@ static NSInteger levenshteinDistance(unichar *s1, NSInteger n, unichar *s2, NSIn
     return levenshteinDistance(buffer1, n1, buffer2, n2);
 }
 
+/*
+    String scoring code based on the JavaScript library 'String Score' by Joshaven Potter
+    https://github.com/joshaven/string_score
+*/
+
+- (float) scoreAgainst:(NSString *)other
+{
+    return [self scoreAgainst:other fuzziness:0];
+}
+
+- (float) scoreAgainst:(NSString *)other
+             fuzziness:(float)fuzziness
+{
+    // if it's not a perfect match and is empty return 0
+    if (!self.length || !other.length) {
+        return 0.f;
+    }
+    
+    // if the string is equal to the word, perfect match.
+    if ([self isEqualToString:other]) {
+        return 1.f;
+    }
+        
+    float fuzzies = 1.f;
+    NSUInteger startAt = 0;
+    float runningScore = 0;
+    
+    const NSUInteger selfLen = self.length;
+    const NSUInteger otherLen = other.length;
+    
+    for (NSUInteger i = 0; i < otherLen; ++i) {
+        
+        // find next first case-insensitive match of a character.
+        
+        NSString *otherChar = [other substringWithRange:NSMakeRange(i, 1)];
+        
+        const NSRange range = [self rangeOfString:otherChar
+                                          options:NSCaseInsensitiveSearch
+                                            range:NSMakeRange(startAt, selfLen - startAt)];
+        
+        if (range.location == NSNotFound) {
+            
+            if (fuzziness) {
+                fuzzies += (1.f - fuzziness);
+            } else {
+                return 0;
+            }
+            
+        } else {
+            
+            float charScore;
+            if (startAt == range.location) {
+                charScore = 0.7;
+            } else {
+                charScore = 0.1;
+                
+                // Acronym Bonus
+                // Weighing Logic: Typing the first character of an acronym is as if you
+                // preceded it with two perfect character matches.
+                if (range.location &&
+                    NSOrderedSame == [self compare:@" "
+                                           options:0
+                                             range:NSMakeRange(range.location - 1, 1)]) {
+                        charScore += 0.8;
+                    }
+            }
+            
+            // same case bonus.
+            if (NSOrderedSame == [self compare:otherChar
+                                       options:0
+                                         range:NSMakeRange(range.location, 1)]) {
+                charScore += 0.1;
+            }
+            
+            runningScore += charScore;
+            startAt = range.location + 1;
+        }
+    }
+    
+    // reduce penalty for longer strings.
+    float finalScore = 0.5 * (runningScore / selfLen + runningScore / otherLen) / fuzzies;
+    
+    if ((finalScore < 0.85) &&
+        NSOrderedSame == [self compare:[other substringToIndex:1]
+                               options:NSCaseInsensitiveSearch
+                                 range:NSMakeRange(0, 1)]) {
+            
+            finalScore += 0.15;
+        }
+    
+    return finalScore;
+}
+
 @end
 
 

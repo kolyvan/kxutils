@@ -108,6 +108,46 @@
     XCTAssert(2 == [@"abcd" levenshteinDistance:@"1abc2"]);
 }
 
+- (void) testScore {
+
+    NSString *str = @"Hello World";
+    
+    XCTAssert(0. == [str scoreAgainst:nil]);
+    XCTAssert(1. == [str scoreAgainst:str]);
+    XCTAssert(0. == [str scoreAgainst:@"Hellx"]);
+    XCTAssert(0. == [str scoreAgainst:@"Hello_World"]);
+    XCTAssert(0. == [str scoreAgainst:@"WH"]);
+    XCTAssert(0. <  [str scoreAgainst:@"H"]);
+    XCTAssert(0. <  [str scoreAgainst:@"h"]);
+    XCTAssert(0. <  [str scoreAgainst:@"e"]);
+    XCTAssert(0. <  [str scoreAgainst:@"W"]);
+    XCTAssert(0. <  [str scoreAgainst:@"World"]);
+    XCTAssert(0. <  [str scoreAgainst:@"world"]);
+    XCTAssert([str scoreAgainst:@"hello"] < [str scoreAgainst:@"Hello"]);
+    XCTAssert([str scoreAgainst:@"H"] < [str scoreAgainst:@"He"]);
+
+    XCTAssert([str scoreAgainst:@"e"] < [str scoreAgainst:@"h"]);
+    XCTAssert([str scoreAgainst:@"h"] < [str scoreAgainst:@"he"]);
+    XCTAssert([str scoreAgainst:@"hel"] < [str scoreAgainst:@"hell"]);
+    XCTAssert([str scoreAgainst:@"hell"] < [str scoreAgainst:@"hello"]);
+    XCTAssert([str scoreAgainst:@"hello"] < [str scoreAgainst:@"helloworld"]);
+    XCTAssert([str scoreAgainst:@"helloworl"] < [str scoreAgainst:@"hello worl"]);
+    XCTAssert([str scoreAgainst:@"hello worl"] < [str scoreAgainst:@"hello world"]);
+    
+    XCTAssert([str scoreAgainst:@"Hld"] < [str scoreAgainst:@"Hel"]);
+    XCTAssert([str scoreAgainst:@"w"] < [str scoreAgainst:@"h"]);
+}
+
+- (void) testScoreFuzzy {
+    
+    NSString *str = @"Hello World";
+
+    XCTAssert(0. <  [str scoreAgainst:@"Hz" fuzziness:0.5]);
+    XCTAssert(0. <  [str scoreAgainst:@"jello" fuzziness:0.5]);
+    XCTAssert([str scoreAgainst:@"hello wor1" fuzziness:0.5] < [str scoreAgainst:@"hello worl" fuzziness:0.5]);
+    XCTAssert([str scoreAgainst:@"Hz" fuzziness:0.5] < [str scoreAgainst:@"Hz" fuzziness:0.9]);
+}
+
 /*
 - (void)testPerformanceExample {
  

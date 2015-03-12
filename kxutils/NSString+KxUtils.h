@@ -50,4 +50,8 @@
 
 - (NSInteger) levenshteinDistance:(NSString *) other;
 
+- (float) scoreAgainst:(NSString *)other;
+- (float) scoreAgainst:(NSString *)other
+             fuzziness:(float)fuzziness;
+
 @end
