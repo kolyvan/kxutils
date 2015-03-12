@@ -100,6 +100,9 @@
     ratingView.title = @"Rating";
     [ratingView sizeToFit];
     ratingView.userInteractionEnabled = YES;
+    [ratingView addTarget:self
+                   action:@selector(ratingViewDidChange:)
+         forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:ratingView];
     
     
@@ -206,13 +209,20 @@
     }
 }
 
-#pragma KxPathwayViewDelegate
+#pragma mark - KxPathwayViewDelegate
 
 - (void) pathwayView:(KxPathwayView *)view didSelectIndex:(NSUInteger)index
 {
     if (index < view.items.count - 1) {
         view.items = [view.items subarrayWithRange:NSMakeRange(0, index + 1)];
     }
+}
+
+#pragma mark - rating view
+
+- (void) ratingViewDidChange:(KxRatingView *)sender
+{
+    NSLog(@"rating did change: %.1f", sender.value);
 }
 
 @end

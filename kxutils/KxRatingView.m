@@ -44,6 +44,7 @@
     if (![_title isEqualToString:title]) {
         _title = [title copy];
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
     }
 }
 
@@ -52,6 +53,7 @@
     if (![_titleFont isEqual:titleFont]) {
         _titleFont = titleFont;
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
     }
 }
 
@@ -85,6 +87,7 @@
         _markFontName = markFontName;
         _markPath = nil;
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
     }
 }
 
@@ -94,6 +97,7 @@
         _markFontSize = markFontSize;
         _markPath = nil;
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
     }
 }
 
@@ -103,6 +107,7 @@
         _markLetter = markLetter;
         _markPath = nil;
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
     }
 }
 
@@ -111,6 +116,7 @@
     if (_maxValue != maxValue) {
         _maxValue = maxValue;
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
     }
 }
 
@@ -123,16 +129,12 @@
         fireEvent:(BOOL)fireEvent
 {
     if (fabsf(_value - value) > FLT_EPSILON) {
-        
+                
         _value = value;
         [self setNeedsDisplay];
         
         if (fireEvent) {
-            
-            __strong id<KxRatingViewDelegate> delegate = _delegate;
-            if (delegate) {
-                [delegate ratingViewDidChangeValue:self];
-            }
+            [self sendActionsForControlEvents:UIControlEventValueChanged];
         }
     }
 }
@@ -168,7 +170,7 @@
                                               fontSize:_markFontSize];
         
         if (!_markPath) {  // surrogate mark sybmol
-            const CGRect oval = (CGRect){0 ,0, _markFontSize, _markFontSize};
+            const CGRect oval = {0 ,0, _markFontSize, _markFontSize};
             _markPath = [UIBezierPath bezierPathWithOvalInRect:oval];
         }
     }
@@ -208,6 +210,11 @@ static const CGFloat kMargin = 4.0f;
     const CGFloat H = roundf(MAX(markSize.height, titleSize.height)) + kMargin;
     
     return (CGSize){ MIN(W, size.width), MIN(H, size.height) };
+}
+
+- (CGSize)intrinsicContentSize
+{
+    return [self sizeThatFits:CGSizeZero];
 }
 
 - (void) drawRect:(CGRect)rect
@@ -289,27 +296,58 @@ static const CGFloat kMargin = 4.0f;
     }
 }
 
-#pragma mark - Event
+#pragma mark - touches
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    [super touchesBegan:touches withEvent:event];
-    [self checkTouches:touches isMoved:NO];
+    return !self.isUserInteractionEnabled;
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+- (BOOL)canBecomeFirstResponder
 {
-    [super touchesMoved:touches withEvent:event];
-    [self checkTouches:touches isMoved:YES];
+    return YES;
 }
 
-- (void) checkTouches:(NSSet *)touches isMoved:(BOOL)isMoved
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    const CGPoint location = [[touches anyObject] locationInView:self];
+    [super beginTrackingWithTouch:touch withEvent:event];
+    if (!self.isFirstResponder) {
+        [self becomeFirstResponder];
+    }
+    [self checkTouch:touch isMoved:NO];
+    return YES;
+}
+
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super continueTrackingWithTouch:touch withEvent:event];
+    [self checkTouch:touch isMoved:YES];
+    return YES;
+}
+
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    [super endTrackingWithTouch:touch withEvent:event];
+    if ([self isFirstResponder]) {
+        [self resignFirstResponder];
+    }
+}
+
+- (void)cancelTrackingWithEvent:(UIEvent *)event
+{
+    [super cancelTrackingWithEvent:event];
+    if (self.isFirstResponder) {
+        [self resignFirstResponder];
+    }
+}
+
+- (void) checkTouch:(UITouch *)touch isMoved:(BOOL)isMoved
+{
+    const CGPoint location = [touch locationInView:self];
     const CGFloat wMarks = [self widthOfMarks];
     
-    if (location.x < wMarks) {
-        
+    if (location.x > 0 && location.x < wMarks)
+    {
         if (isMoved) {
         
             const NSUInteger val = roundf(location.x / wMarks * _maxValue + 0.25f);
@@ -326,6 +364,14 @@ static const CGFloat kMargin = 4.0f;
                 [self setValue:val fireEvent:YES];
             }
         }
+        
+    } else if (location.x >= wMarks) {
+        
+        [self setValue:_maxValue fireEvent:YES];
+        
+    } else if (location.x <= 0 ) {
+        
+        [self setValue:0 fireEvent:YES];
     }
 }
 

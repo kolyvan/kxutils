@@ -31,10 +31,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol KxRatingViewDelegate;
-
-@interface KxRatingView : UIView
-@property (readwrite, nonatomic, weak) id<KxRatingViewDelegate> delegate;
+@interface KxRatingView : UIControl
 @property (readwrite, nonatomic, strong) NSString *title;
 @property (readwrite, nonatomic, strong) UIFont *titleFont;
 @property (readwrite, nonatomic, strong) UIColor *titleColor;
@@ -45,8 +42,4 @@
 @property (readwrite, nonatomic) CGFloat markFontSize;
 @property (readwrite, nonatomic) NSUInteger maxValue;
 @property (readwrite, nonatomic) CGFloat value;
-@end
-
-@protocol KxRatingViewDelegate <NSObject>
-- (void) ratingViewDidChangeValue:(KxRatingView *)ratingView;
 @end
