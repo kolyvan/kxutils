@@ -61,6 +61,7 @@
 		F99EE7571A2EE1F500015021 /* KxPathwayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F99EE7561A2EE1F500015021 /* KxPathwayView.m */; };
 		F99EE75A1A2EF75100015021 /* UIBezierPath+KxUitls.m in Sources */ = {isa = PBXBuildFile; fileRef = F99EE7591A2EF75100015021 /* UIBezierPath+KxUitls.m */; };
 		F99EE75D1A2EFADE00015021 /* KxSpinView.m in Sources */ = {isa = PBXBuildFile; fileRef = F99EE75C1A2EFADE00015021 /* KxSpinView.m */; };
+		F9D3101E1AB6A1F200C19072 /* SerializationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D3101D1AB6A1F200C19072 /* SerializationTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +195,7 @@
 		F99EE7591A2EF75100015021 /* UIBezierPath+KxUitls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+KxUitls.m"; sourceTree = "<group>"; };
 		F99EE75B1A2EFADE00015021 /* KxSpinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxSpinView.h; sourceTree = "<group>"; };
 		F99EE75C1A2EFADE00015021 /* KxSpinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxSpinView.m; sourceTree = "<group>"; };
+		F9D3101D1AB6A1F200C19072 /* SerializationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerializationTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				F90BE5C61A27257F00D298E9 /* LinguisticTest.m */,
 				F90BE5C81A27282600D298E9 /* FilePathTest.m */,
 				F973A4F01A28518B00368D3F /* DigestTest.m */,
+				F9D3101D1AB6A1F200C19072 /* SerializationTest.m */,
 			);
 			path = kxutilsTests;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				F973A4FA1A285A3800368D3F /* NSDateTest.m in Sources */,
 				F973A4E91A28481100368D3F /* NSArrayTest.m in Sources */,
 				F90BE5C71A27257F00D298E9 /* LinguisticTest.m in Sources */,
+				F9D3101E1AB6A1F200C19072 /* SerializationTest.m in Sources */,
 				F973A4F11A28518B00368D3F /* DigestTest.m in Sources */,
 				F90BE5C51A271EA900D298E9 /* NSStringTest.m in Sources */,
 				F90BE5C91A27282600D298E9 /* FilePathTest.m in Sources */,

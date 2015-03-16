@@ -47,4 +47,35 @@
 + (id) loadObjectFromPlist:(NSString *)path
                      error:(NSError **)outError;
 
++ (void) saveObject:(id)object
+          withCoder:(NSCoder *)coder;
+
++ (void) loadObject:(id)object
+          withCoder:(NSCoder *)decoder;
+
++ (NSDictionary *) saveObjectAsDictionary:(id)object;
+
++ (void) loadObject:(id)object
+     withDictionary:(NSDictionary *)dict;
+
+@end
+
+@protocol KxSerializationTransformer<NSObject>
+- (id) transformSavingObject:(id)object
+                       value:(id)value
+                         key:(NSString *)key;
+- (id) transformLoadingObject:(id)object
+                        value:(id)value
+                          key:(NSString *)key;
+@end
+
+@protocol KxSeriazable <NSObject>
+@optional
++ (NSSet *) serializationBlacklistProperties;
++ (id<KxSerializationTransformer>) serializationTransformer;
+@end
+
+// transforms NSDate <-> double (timeIntervalSinceReferenceDate)
+@interface KxSerializationTransformerDate : NSObject<KxSerializationTransformer>
++ (instancetype) sharedTransformer __attribute__((const));
 @end
