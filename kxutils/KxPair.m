@@ -56,7 +56,9 @@
 
 - (BOOL) isEqualToPair:(KxPair *)other;
 {
-    return [_first isEqual:other.first] && [_second isEqual:other.second];
+    return
+    (_first == other.first || [_first isEqual:other.first]) &&
+    (_second == other.second || [_second isEqual:other.second]);
 }
 
 - (BOOL) isEqual:(id)other

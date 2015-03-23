@@ -123,6 +123,7 @@
 		F90BE5C81A27282600D298E9 /* FilePathTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePathTest.m; sourceTree = "<group>"; };
 		F90BE5D61A2746C900D298E9 /* KxDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxDigest.h; sourceTree = "<group>"; };
 		F90BE5D71A2746C900D298E9 /* KxDigest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxDigest.m; sourceTree = "<group>"; };
+		F91B25411ABFFF55001744DE /* KxMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMacro.h; sourceTree = "<group>"; };
 		F97169CC1A2D9AFD00F7B5AB /* UIView+KxUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KxUtils.h"; sourceTree = "<group>"; };
 		F97169CD1A2D9AFD00F7B5AB /* UIView+KxUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KxUtils.m"; sourceTree = "<group>"; };
 		F97169CF1A2DA31F00F7B5AB /* UITableView+KxUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+KxUtils.h"; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 				F973A5131A2889BF00368D3F /* Utils */,
 				F90BE5701A26E09D00D298E9 /* KxUtils.h */,
 				F90BE5721A26E09D00D298E9 /* KxUtils.m */,
+				F91B25411ABFFF55001744DE /* KxMacro.h */,
 			);
 			path = kxutils;
 			sourceTree = "<group>";

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "KxSerialization.h"
-
+#import "KxMacro.h"
 
 @interface DummyObj : NSObject<KxSeriazable, NSCoding>
 @property (readonly, nonatomic) NSUInteger readonlyValue;
@@ -68,13 +68,13 @@
     _boolValue == other->_boolValue &&
     _intValue == other->_intValue &&
     _floatValue == other->_floatValue &&
-    (_numValue == other->_numValue || [_numValue isEqual:other->_numValue]) &&
-    (_strValue == other->_strValue || [_strValue isEqualToString:other->_strValue]) &&
-    (_dateValue == other->_dateValue || [_dateValue isEqualToDate:other->_dateValue]) &&
-    (_arrValue == other->_arrValue || [_arrValue isEqualToArray:other->_arrValue]) &&
-    (_dictValue == other->_dictValue || [_dictValue isEqualToDictionary:other->_dictValue]) &&
-    (_childValue == other->_childValue || [_childValue isEqualToDummyObj:other->_childValue]) &&
-    (_idValue  == other->_idValue || [_idValue isEqual:other->_idValue]);
+    NSOBJ_ISEQUAL(_numValue, other->_numValue) &&
+    NSOBJ_ISEQUAL(_strValue, other->_strValue) &&
+    NSOBJ_ISEQUAL(_dateValue, other->_dateValue) &&
+    NSOBJ_ISEQUAL(_arrValue, other->_arrValue) &&
+    NSOBJ_ISEQUAL(_dictValue, other->_dictValue) &&
+    NSOBJ_ISEQUAL(_childValue, other->_childValue) &&
+    NSOBJ_ISEQUAL(_idValue, other->_idValue);
 }
 
 + (id<KxSerializationTransformer>) serializationTransformer
