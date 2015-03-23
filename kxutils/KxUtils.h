@@ -35,6 +35,7 @@
 #import "UITableView+KxUtils.h"
 #import "NSLayoutManager+KxUtils.h"
 #import "UIBezierPath+KxUitls.h"
+#import "UIApplication+KxUtils.h"
 #import "KxColorPallete.h"
 #import "KxCheckmarkView.h"
 #import "KxRoundProgressView.h"

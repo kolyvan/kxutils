@@ -24,6 +24,7 @@
 		F90BE5C71A27257F00D298E9 /* LinguisticTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F90BE5C61A27257F00D298E9 /* LinguisticTest.m */; };
 		F90BE5C91A27282600D298E9 /* FilePathTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F90BE5C81A27282600D298E9 /* FilePathTest.m */; };
 		F90BE5D81A2746C900D298E9 /* KxDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = F90BE5D71A2746C900D298E9 /* KxDigest.m */; };
+		F91B25441AC001E0001744DE /* UIApplication+KxUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F91B25431AC001E0001744DE /* UIApplication+KxUtils.m */; };
 		F97169CE1A2D9AFD00F7B5AB /* UIView+KxUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F97169CD1A2D9AFD00F7B5AB /* UIView+KxUtils.m */; };
 		F97169D11A2DA31F00F7B5AB /* UITableView+KxUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F97169D01A2DA31F00F7B5AB /* UITableView+KxUtils.m */; };
 		F97169D41A2DA79E00F7B5AB /* NSLayoutManager+KxUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F97169D31A2DA79E00F7B5AB /* NSLayoutManager+KxUtils.m */; };
@@ -124,6 +125,8 @@
 		F90BE5D61A2746C900D298E9 /* KxDigest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxDigest.h; sourceTree = "<group>"; };
 		F90BE5D71A2746C900D298E9 /* KxDigest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxDigest.m; sourceTree = "<group>"; };
 		F91B25411ABFFF55001744DE /* KxMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMacro.h; sourceTree = "<group>"; };
+		F91B25421AC001E0001744DE /* UIApplication+KxUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+KxUtils.h"; sourceTree = "<group>"; };
+		F91B25431AC001E0001744DE /* UIApplication+KxUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+KxUtils.m"; sourceTree = "<group>"; };
 		F97169CC1A2D9AFD00F7B5AB /* UIView+KxUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KxUtils.h"; sourceTree = "<group>"; };
 		F97169CD1A2D9AFD00F7B5AB /* UIView+KxUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KxUtils.m"; sourceTree = "<group>"; };
 		F97169CF1A2DA31F00F7B5AB /* UITableView+KxUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+KxUtils.h"; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				F97169D31A2DA79E00F7B5AB /* NSLayoutManager+KxUtils.m */,
 				F99EE7581A2EF75100015021 /* UIBezierPath+KxUitls.h */,
 				F99EE7591A2EF75100015021 /* UIBezierPath+KxUitls.m */,
+				F91B25421AC001E0001744DE /* UIApplication+KxUtils.h */,
+				F91B25431AC001E0001744DE /* UIApplication+KxUtils.m */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 				F90BE5BA1A26E8C800D298E9 /* NSFileManager+KxUtils.m in Sources */,
 				F973A4EC1A284C4B00368D3F /* NSDictionary+KxUtils.m in Sources */,
 				F9771A481A2C803A0048DBAE /* UIImage+KxUtils.m in Sources */,
+				F91B25441AC001E0001744DE /* UIApplication+KxUtils.m in Sources */,
 				F97169D41A2DA79E00F7B5AB /* NSLayoutManager+KxUtils.m in Sources */,
 				F90BE5C31A26FB6A00D298E9 /* KxLinguistic.m in Sources */,
 				F90BE5BD1A26EF5000D298E9 /* KxSerialization.m in Sources */,
