@@ -178,13 +178,13 @@
     
     for (NSString *item in contents) {
         
-        if (item.length &&
-            [item characterAtIndex:0] != '.')
-        {
+        if ([item hasPrefix:@"."]) {
+            
             NSString *fullpath = [path stringByAppendingPathComponent:item];
             NSDictionary *attr = [self attributesOfItemAtPath:fullpath error:nil];
-            if ([attr.fileType isEqual:NSFileTypeRegular])
+            if ([attr.fileType isEqual:NSFileTypeRegular]) {
                 [ma addObject:item];
+            }
         }
     }
     
