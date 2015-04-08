@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "KxSerialization.h"
-#import "KxMacro.h"
+#import "KxMacros.h"
 
 @interface DummyObj : NSObject<KxSeriazable, NSCoding>
 @property (readonly, nonatomic) NSUInteger readonlyValue;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kolyvan. All rights reserved.
 //
 
-#import "KxMacro.h"
+#import "KxMacros.h"
 #import "KxFilePath.h"
 #import "KxSerialization.h"
 #import "KxLinguistic.h"
