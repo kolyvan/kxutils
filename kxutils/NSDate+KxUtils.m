@@ -31,9 +31,9 @@
 
 #import "NSDate+KxUtils.h"
 
-#define YMD_COMPONENTS NSMonthCalendarUnit|NSDayCalendarUnit|NSYearCalendarUnit
-#define HMS_COMPONENTS NSMinuteCalendarUnit|NSSecondCalendarUnit|NSHourCalendarUnit
-#define YMDHMS_COMPONENTS YMD_COMPONENTS|HMS_COMPONENTS|NSWeekdayCalendarUnit
+#define YMD_COMPONENTS NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitYear
+#define HMS_COMPONENTS NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitHour
+#define YMDHMS_COMPONENTS YMD_COMPONENTS|HMS_COMPONENTS|NSCalendarUnitWeekday
 
 @implementation NSDate (KxUtils)
 
@@ -159,8 +159,8 @@
 - (NSDate *) endOfMonth
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    const NSRange daysRange = [cal rangeOfUnit:NSDayCalendarUnit
-                                        inUnit:NSMonthCalendarUnit
+    const NSRange daysRange = [cal rangeOfUnit:NSCalendarUnitDay
+                                        inUnit:NSCalendarUnitMonth
                                        forDate:self];
     
     NSDateComponents *comp = self.YMDhms_GMT;
@@ -218,7 +218,7 @@
 
 - (NSInteger) daysBetweenDate:(NSDate *) other;
 {
-    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
+    NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSCalendarUnitDay
                                                            fromDate:self
                                                              toDate:other
                                                             options:0]; // NSWrapCalendarComponents?
@@ -230,8 +230,8 @@
 
 - (NSInteger) dayOfYear
 {
-    return [[NSCalendar currentCalendar] ordinalityOfUnit:NSDayCalendarUnit
-                                                   inUnit:NSYearCalendarUnit
+    return [[NSCalendar currentCalendar] ordinalityOfUnit:NSCalendarUnitDay
+                                                   inUnit:NSCalendarUnitYear
                                                   forDate:self];
 }
 
