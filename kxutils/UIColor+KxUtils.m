@@ -301,8 +301,15 @@ static inline CGFloat addDegrees(CGFloat delta, CGFloat deg)
 - (UIColor *) complementaryColor
 {
     const KxHSBA hsba = self.HSBA;
-    const CGFloat hue = addDegrees(180.f, hsba.hue * 360.f) / 360.f;
-    return [UIColor colorWithHue:hue saturation:hsba.saturation brightness:hsba.brightness alpha:hsba.alpha];
+    
+    if (hsba.brightness == 0) {
+        return [UIColor whiteColor];
+    } else if (hsba.saturation == 0) {
+        return [UIColor colorWithHue:hsba.hue saturation:0 brightness:1.f-hsba.brightness alpha:hsba.alpha];
+    } else {
+        const CGFloat hue = addDegrees(180.f, hsba.hue * 360.f) / 360.f;
+        return [UIColor colorWithHue:hue saturation:hsba.saturation brightness:hsba.brightness alpha:hsba.alpha];
+    }
 }
 
 - (UIColor *) darken:(CGFloat)precent
