@@ -95,7 +95,7 @@
             [_button setImage:item.image forState:UIControlStateNormal];
             _button.showsTouchWhenHighlighted = YES;
         }
-        
+                
         [_button sizeToFit];
         [self addSubview:_button];
         
@@ -239,6 +239,10 @@
         [_upButton addTarget:self
                       action:@selector(actionUpButton:)
             forControlEvents:UIControlEventTouchUpInside];
+        
+        _upButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        _upButton.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
+        
         [self addSubview:_upButton];
     }
     return _upButton;
@@ -274,7 +278,6 @@
                                                     tintColor:tintColor];
             
             v.autoresizingMask = UIViewAutoresizingNone;
-            
             v.button.tag = index;
             
             [v.button addTarget:self
@@ -416,9 +419,9 @@
     if (_upButton && !_upButton.hidden) {
         
         _upButton.frame = (CGRect) {
-            size.width - wUpButton - _edgeInsets.right,
+            X,
             _edgeInsets.top,
-            wUpButton,
+            size.width - X - _edgeInsets.right,
             hSize,
         };
     }

@@ -43,7 +43,7 @@
     _pathWay.items = @[
                        [KxPathwayItem pathwayItemWithTitle:@"Home"],
                        [KxPathwayItem pathwayItemWithTitle:@"Page 1"],
-                       //[KxPathwayItem pathwayItemWithTitle:@"Page 2"],
+                       [KxPathwayItem pathwayItemWithTitle:@"Page 2"],
                        ];
     [self.view addSubview:_pathWay];
     
