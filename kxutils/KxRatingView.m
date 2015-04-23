@@ -128,7 +128,7 @@
 - (void) setValue:(CGFloat)value
         fireEvent:(BOOL)fireEvent
 {
-    if (fabsf(_value - value) > FLT_EPSILON) {
+    if (fabs(_value - value) > FLT_EPSILON) {
                 
         _value = value;
         [self setNeedsDisplay];
