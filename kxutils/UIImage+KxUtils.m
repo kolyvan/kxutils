@@ -186,9 +186,11 @@
     size.width *= scale;
     size.height *= scale;
     
+    CGImageRef selfImageRef = self.CGImage;
+    
     const CGSize imgSize = {
-        self.size.width * self.scale,
-        self.size.height * self.scale,
+        CGImageGetWidth(selfImageRef),
+        CGImageGetHeight(selfImageRef),
     };
     
     const CGFloat dW = size.width / imgSize.width;
@@ -210,15 +212,28 @@
         drawOrigin.y = roundf((size.height - drawSize.height) * 0.5f);
     }
     
-    CGImageRef selfImageRef = self.CGImage;
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(selfImageRef);
+    
+    const uint32_t alpha = (bitmapInfo & kCGBitmapAlphaInfoMask);
+    if (alpha == kCGImageAlphaNone) {
+        
+        bitmapInfo &= ~kCGBitmapAlphaInfoMask;
+        bitmapInfo |= kCGImageAlphaNoneSkipFirst;
+        
+    } else if (alpha != kCGImageAlphaNoneSkipFirst &&
+               alpha != kCGImageAlphaNoneSkipLast) {
+        
+        bitmapInfo &= ~kCGBitmapAlphaInfoMask;
+        bitmapInfo |= kCGImageAlphaPremultipliedFirst;
+    }
+    
     CGContextRef context = CGBitmapContextCreate(NULL,
                                                  size.width,
                                                  size.height,
                                                  CGImageGetBitsPerComponent(selfImageRef),
                                                  0,
                                                  CGImageGetColorSpace(selfImageRef),
-                                                 CGImageGetBitmapInfo(selfImageRef));
-    
+                                                 bitmapInfo);    
     CGImageRef imageRef = NULL;
     
     if (context) {
