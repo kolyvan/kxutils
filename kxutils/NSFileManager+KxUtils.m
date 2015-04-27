@@ -178,7 +178,7 @@
     
     for (NSString *item in contents) {
         
-        if ([item hasPrefix:@"."]) {
+        if (![item hasPrefix:@"."]) {
             
             NSString *fullpath = [path stringByAppendingPathComponent:item];
             NSDictionary *attr = [self attributesOfItemAtPath:fullpath error:nil];
