@@ -11,12 +11,15 @@
 #import "TestImagesViewController.h"
 #import "TestViewsController.h"
 #import "KxUtils.h"
+#import "FontIconViewer.h"
+#import "FontAwesomeGlyphs.h"
 
 enum {
     
     MainTestRowColors,
     MainTestRowImages,
     MainTestRowViews,
+    MainTestRowFont,
     MainTestRowCount,
 };
 
@@ -78,6 +81,8 @@ enum {
         cell.textLabel.text = @"Images";
     } else if (indexPath.row == MainTestRowViews) {
         cell.textLabel.text = @"Views";
+    } else if (indexPath.row == MainTestRowFont) {
+        cell.textLabel.text = @"Font Icon";
     }
     
     return cell;
@@ -101,6 +106,15 @@ enum {
         
         TestViewsController *vc = [TestViewsController new];
         [self.navigationController pushViewController:vc animated:YES];
+        
+    } else if (indexPath.row == MainTestRowFont) {
+        
+        FontIconViewer *vc = [FontIconViewer new];
+        vc.title = @"FontAwesome";
+        vc.glyphs = [FontAwesomeGlyphs glyphNames];
+        vc.fontPath = [KxFilePath pathForResource:@"fontawesome.otf"];
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
 }
 

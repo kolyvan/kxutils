@@ -150,10 +150,6 @@
     
     if (strokeWidth && strokeColor) {
         
-        if (strokeWidth > 0) {
-            strokeWidth = -strokeWidth;
-        }
-        
         atts[(NSString*)kCTStrokeWidthAttributeName] =@(strokeWidth);
         atts[(NSString*)kCTStrokeColorAttributeName] = (__bridge id)strokeColor.CGColor;
     }
