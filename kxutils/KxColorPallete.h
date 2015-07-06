@@ -35,7 +35,7 @@
 
 @property (readonly, nonatomic, strong) NSArray *colors;
 @property (readonly, nonatomic, strong) NSArray *colorNames;
-@property (readonly, nonatomic, strong) NSArray *palleteName;
+@property (readonly, nonatomic, strong) NSString *palleteName;
 
 + (NSArray *) colors;
 + (NSArray *) colorNames;
