@@ -57,7 +57,7 @@
     CGFontRef cgFont = CGFontCreateWithDataProvider(fontProvider);
     CGDataProviderRelease(fontProvider);
     
-    CTFontRef ctFont;
+    CTFontRef ctFont = NULL;
     if (cgFont) {
     
         CTFontDescriptorRef fontDescriptor = CTFontDescriptorCreateWithAttributes((__bridge CFDictionaryRef)@{});
