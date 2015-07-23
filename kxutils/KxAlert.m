@@ -562,7 +562,7 @@ static KxAlertManager *gAlertManager;
         [ms appendString:@"#"];
         [ms appendString:error.domain];
         [ms appendString:@"/"];
-        [ms appendFormat:@"%u", (unsigned)error.code];
+        [ms appendFormat:@"%d", (int)error.code];
     }
     
     [self showAlert:title
