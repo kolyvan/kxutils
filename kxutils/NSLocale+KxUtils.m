@@ -37,7 +37,16 @@
 {
     NSArray *langs = [NSLocale preferredLanguages];
     if (langs.count) {
-        return langs.firstObject;
+        
+        NSString *lang = langs.firstObject;
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_8_3) {
+            // in ios9 returns as locale id: ru-RU instead of lang id: ru
+            const NSRange range = [lang rangeOfString:@"-"];
+            if (range.location != NSNotFound) {
+                lang = [lang substringToIndex:range.location];
+            }
+        }
+        return lang;
     }
     return [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
 }
