@@ -162,7 +162,8 @@ static inline BOOL linguisticCharacterIsEndOfSentenceSymbol(unichar ch);
     
     if (langCode) {
         
-        if ([langCode isEqualToString:@"uk"]) {
+        if ([langCode isEqualToString:@"uk"] ||
+            [langCode isEqualToString:@"bg"]) {
             langCode = @"ru";
         }
         
