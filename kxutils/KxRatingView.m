@@ -312,7 +312,7 @@ static const CGFloat kMargin = 4.0f;
 {
     [super beginTrackingWithTouch:touch withEvent:event];
     if (!self.isFirstResponder) {
-        [self becomeFirstResponder];
+        //[self becomeFirstResponder];
     }
     [self checkTouch:touch isMoved:NO];
     return YES;
@@ -329,7 +329,7 @@ static const CGFloat kMargin = 4.0f;
 {
     [super endTrackingWithTouch:touch withEvent:event];
     if ([self isFirstResponder]) {
-        [self resignFirstResponder];
+        //[self resignFirstResponder];
     }
 }
 
@@ -337,7 +337,7 @@ static const CGFloat kMargin = 4.0f;
 {
     [super cancelTrackingWithEvent:event];
     if (self.isFirstResponder) {
-        [self resignFirstResponder];
+        //[self resignFirstResponder];
     }
 }
 
