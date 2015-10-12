@@ -44,3 +44,4 @@ extern NSError * mkErrorWithError(NSError *underlying,
                                   NSString *reason, ...);
 
 
+extern NSString *messageWithPosixErrorNum(int errnum);

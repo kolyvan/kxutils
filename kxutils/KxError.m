@@ -87,3 +87,16 @@ NSError * mkErrorWithError(NSError *underlying,
                                code:code
                            userInfo:[userInfo copy]];
 }
+
+NSString *messageWithPosixErrorNum(int errnum)
+{
+    NSString *message;
+    char buffer[1024] = {0};
+    if (!strerror_r(errnum, buffer, sizeof(buffer))) {
+        message = [NSString stringWithUTF8String:buffer];
+    }
+    if (!message.length) {
+        message = [NSString stringWithFormat:@"ERR: %d", errnum];
+    }
+    return message;
+}
