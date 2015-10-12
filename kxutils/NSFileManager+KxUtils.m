@@ -27,10 +27,13 @@
  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 
 #import "NSFileManager+KxUtils.h"
 #import <sys/xattr.h>
+#import <string.h>
+
+static NSString *errorMessageWithPosixErr(int errnum);
 
 @implementation NSFileManager (KxUtils)
 
@@ -94,9 +97,13 @@
         
         if (outError) {
             
+            const int errnum = errno;
             *outError = [NSError errorWithDomain:NSPOSIXErrorDomain
-                                            code:result
-                                        userInfo:@{ NSFilePathErrorKey : path }];
+                                            code:errnum
+                                        userInfo:@{ NSFilePathErrorKey : path,
+                                                    NSLocalizedDescriptionKey : errorMessageWithPosixErr(errnum),
+                                                    NSLocalizedFailureReasonErrorKey : path.lastPathComponent,
+                                                    }];
         }
     }
     
@@ -118,7 +125,7 @@
     NSString *string;
     
     if (result > 0) {
-    
+        
         char attrValue[result + 1]; // add size for term NULL
         
         result = getxattr(path.fileSystemRepresentation,
@@ -139,9 +146,13 @@
         
         if (outError) {
             
+            const int errnum = errno;
             *outError = [NSError errorWithDomain:NSPOSIXErrorDomain
-                                            code:result
-                                        userInfo:@{ NSFilePathErrorKey : path }];
+                                            code:errnum
+                                        userInfo:@{ NSFilePathErrorKey : path,
+                                                    NSLocalizedDescriptionKey : errorMessageWithPosixErr(errnum),
+                                                    NSLocalizedFailureReasonErrorKey : path.lastPathComponent,
+                                                    }];
         }
         
         return nil;
@@ -258,3 +269,17 @@
 }
 
 @end
+
+
+static NSString *errorMessageWithPosixErr(int errnum)
+{
+    NSString *message;
+    char buffer[1024] = {0};
+    if (!strerror_r(errnum, buffer, sizeof(buffer))) {
+        message = [NSString stringWithUTF8String:buffer];
+    }
+    if (!message.length) {
+        message = [NSString stringWithFormat:@"ERR: %d", errnum];
+    }
+    return message;
+}
