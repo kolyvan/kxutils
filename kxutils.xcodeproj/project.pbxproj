@@ -25,6 +25,7 @@
 		F90BE5C91A27282600D298E9 /* FilePathTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F90BE5C81A27282600D298E9 /* FilePathTest.m */; };
 		F90BE5D81A2746C900D298E9 /* KxDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = F90BE5D71A2746C900D298E9 /* KxDigest.m */; };
 		F91B25441AC001E0001744DE /* UIApplication+KxUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F91B25431AC001E0001744DE /* UIApplication+KxUtils.m */; };
+		F93692271C0453BE00AAB6FA /* KxColorPalleteFlatAlt.m in Sources */ = {isa = PBXBuildFile; fileRef = F93692261C0453BE00AAB6FA /* KxColorPalleteFlatAlt.m */; };
 		F948C1A21B4A3A870006C49C /* FontAwesomeGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F948C19F1B4A3A870006C49C /* FontAwesomeGlyphs.m */; };
 		F948C1A31B4A3A870006C49C /* FontIconViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = F948C1A11B4A3A870006C49C /* FontIconViewer.m */; };
 		F948C1A51B4A3B610006C49C /* fontawesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = F948C1A41B4A3B610006C49C /* fontawesome.otf */; };
@@ -131,6 +132,8 @@
 		F91B25411ABFFF55001744DE /* KxMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMacros.h; sourceTree = "<group>"; };
 		F91B25421AC001E0001744DE /* UIApplication+KxUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+KxUtils.h"; sourceTree = "<group>"; };
 		F91B25431AC001E0001744DE /* UIApplication+KxUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+KxUtils.m"; sourceTree = "<group>"; };
+		F93692251C0453BE00AAB6FA /* KxColorPalleteFlatAlt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxColorPalleteFlatAlt.h; path = Extra/KxColorPalleteFlatAlt.h; sourceTree = SOURCE_ROOT; };
+		F93692261C0453BE00AAB6FA /* KxColorPalleteFlatAlt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KxColorPalleteFlatAlt.m; path = Extra/KxColorPalleteFlatAlt.m; sourceTree = SOURCE_ROOT; };
 		F948C19E1B4A3A870006C49C /* FontAwesomeGlyphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesomeGlyphs.h; sourceTree = "<group>"; };
 		F948C19F1B4A3A870006C49C /* FontAwesomeGlyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontAwesomeGlyphs.m; sourceTree = "<group>"; };
 		F948C1A01B4A3A870006C49C /* FontIconViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontIconViewer.h; sourceTree = "<group>"; };
@@ -389,6 +392,8 @@
 				F9771A3C1A2C4C020048DBAE /* NSData+ZLIB.m */,
 				F9771A351A2C4C020048DBAE /* KxColorPalleteFlat.h */,
 				F9771A361A2C4C020048DBAE /* KxColorPalleteFlat.m */,
+				F93692251C0453BE00AAB6FA /* KxColorPalleteFlatAlt.h */,
+				F93692261C0453BE00AAB6FA /* KxColorPalleteFlatAlt.m */,
 				F9771A391A2C4C020048DBAE /* KxColorPalleteX11.h */,
 				F9771A3A1A2C4C020048DBAE /* KxColorPalleteX11.m */,
 				F9771A371A2C4C020048DBAE /* KxColorPalleteHTML.h */,
@@ -576,6 +581,7 @@
 				F90BE5C31A26FB6A00D298E9 /* KxLinguistic.m in Sources */,
 				F90BE5BD1A26EF5000D298E9 /* KxSerialization.m in Sources */,
 				F973A5101A287CB000368D3F /* KxPair.m in Sources */,
+				F93692271C0453BE00AAB6FA /* KxColorPalleteFlatAlt.m in Sources */,
 				F973A5091A28742A00368D3F /* KxColorPallete.m in Sources */,
 				F973A4E71A28443C00368D3F /* NSArray+KxUtils.m in Sources */,
 				F99EE74E1A2EC31400015021 /* KxCheckmarkView.m in Sources */,

@@ -12,6 +12,7 @@
 #import "KxColorPalleteX11.h"
 #import "KxColorPalleteHTML.h"
 #import "KxColorPalleteCool.h"
+#import "KxColorPalleteFlatAlt.h"
 #import "KxUtils.h"
 
 enum {
@@ -57,6 +58,7 @@ enum {
                       [KxColorPalleteX11 new],
                       [KxColorPalleteHTML new],
                       [KxColorPalleteCool new],
+                      [KxColorPalleteFlatAlt new],
                       ];
         
         
