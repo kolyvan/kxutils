@@ -285,7 +285,7 @@ static inline CGFloat addDegrees(CGFloat delta, CGFloat deg)
 - (UIColor *) grayscaleColor
 {
     const KxRGBA rgba = self.RGBA;
-    const CGFloat v = ((0.299f * rgba.red) + (0.587 * rgba.blue) + (0.114 * rgba.green));
+    const CGFloat v = ((0.299f * rgba.red) + (0.587 * rgba.green) + (0.114 * rgba.blue));
     return [UIColor colorWithWhite:v alpha:rgba.alpha];
 }
 
@@ -293,7 +293,7 @@ static inline CGFloat addDegrees(CGFloat delta, CGFloat deg)
 - (UIColor *) contrastingColor
 {
     const KxRGBA rgba = self.RGBA;
-    const CGFloat v = 1.0f - ((0.299f * rgba.red) + (0.587 * rgba.blue) + (0.114 * rgba.green));
+    const CGFloat v = 1.0f - ((0.299f * rgba.red) + (0.587 * rgba.green) + (0.114 * rgba.blue));
     return v < 0.5f ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
