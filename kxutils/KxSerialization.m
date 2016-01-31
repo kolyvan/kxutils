@@ -64,36 +64,52 @@ static const char *kListOfPropertiesKey;
     if (!result) {
         
         NSSet *blacklist;
-        if ([self conformsToProtocol:@protocol(KxSeriazable)] &&
-            [self respondsToSelector:@selector(serializationBlacklistProperties)]) {
+        NSUInteger depthOfAncestors = 0;
+        
+        if ([self conformsToProtocol:@protocol(KxSeriazable)]) {
             
-            blacklist = [self performSelector:@selector(serializationBlacklistProperties)];
+            id<KxSeriazable> seriazable = (id<KxSeriazable>)self;
+            
+            if ([self respondsToSelector:@selector(serializationBlacklistProperties)]) {
+                blacklist = [seriazable serializationBlacklistProperties];
+            }
+            
+            if ([self respondsToSelector:@selector(serializationDepthOfAncestors)]) {
+                depthOfAncestors = [seriazable serializationDepthOfAncestors];
+            }
         }
         
         NSMutableArray *ma = [NSMutableArray array];
         
-        unsigned int propertyCount;
-        objc_property_t *properties = class_copyPropertyList(self, &propertyCount);
+        Class klass = self;
         
-        for (unsigned int i = 0; i < propertyCount; ++i) {
+        do {
             
-            objc_property_t property = properties[i];
-            if ([self kx_validateProperty:property]) {
+            unsigned int propertyCount;
+            objc_property_t *properties = class_copyPropertyList(klass, &propertyCount);
+            
+            for (unsigned int i = 0; i < propertyCount; ++i) {
                 
-                const char *name = property_getName(property);
-                if (name) {
+                objc_property_t property = properties[i];
+                if ([klass kx_validateProperty:property]) {
                     
-                    NSString *nsName = [NSString stringWithUTF8String:name];
-                    if (nsName.length &&
-                        (!blacklist || ![blacklist containsObject:nsName]))
-                    {                        
-                        [ma addObject:nsName];
+                    const char *name = property_getName(property);
+                    if (name) {
+                        
+                        NSString *nsName = [NSString stringWithUTF8String:name];
+                        if (nsName.length &&
+                            (!blacklist || ![blacklist containsObject:nsName]))
+                        {
+                            [ma addObject:nsName];
+                        }
                     }
                 }
             }
-        }
-        
-        free(properties);
+            
+            free(properties);
+            
+        } while ((depthOfAncestors-- > 0) &&
+                 (klass = class_getSuperclass(klass)));
         
         result = [ma copy];
         

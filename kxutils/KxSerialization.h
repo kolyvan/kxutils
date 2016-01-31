@@ -73,6 +73,7 @@
 @optional
 + (NSSet *) serializationBlacklistProperties;
 + (id<KxSerializationTransformer>) serializationTransformer;
++ (NSUInteger) serializationDepthOfAncestors;
 @end
 
 // transforms NSDate <-> double (timeIntervalSinceReferenceDate)
