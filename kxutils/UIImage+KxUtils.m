@@ -97,8 +97,8 @@
         const KxRGBA rgba = color.RGBA;
         
         components[4*i+0] = rgba.red;
-        components[4*i+1] = rgba.blue;
-        components[4*i+2] = rgba.green;
+        components[4*i+1] = rgba.green;
+        components[4*i+2] = rgba.blue;
         components[4*i+3] = rgba.alpha;
     }
     
