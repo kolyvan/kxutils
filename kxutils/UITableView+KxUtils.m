@@ -50,14 +50,14 @@
     return cell;
 }
 
-- (void) setTableHeaderText:(NSString *)text
+- (UILabel *) setTableHeaderText:(NSString *)text
 {
-    [self setTableHeaderText:text textColor:[UIColor darkTextColor] backColor:nil];
+    return [self setTableHeaderText:text textColor:[UIColor darkTextColor] backColor:nil];
 }
 
-- (void) setTableHeaderText:(NSString *)text
-                  textColor:(UIColor *)textColor
-                  backColor:(UIColor *)backColor
+- (UILabel *) setTableHeaderText:(NSString *)text
+                       textColor:(UIColor *)textColor
+                       backColor:(UIColor *)backColor
 {
     if (text.length) {
         
@@ -88,21 +88,24 @@
         self.tableHeaderView = [[UIView alloc] initWithFrame:footerRect];
         self.tableHeaderView.backgroundColor = backColor;
         [self.tableHeaderView addSubview:label];
+
+        return label;
         
     } else {
         
         self.tableHeaderView = nil;
+        return nil;
     }
 }
 
-- (void) setTableFooterText:(NSString *)text
+- (UILabel *) setTableFooterText:(NSString *)text
 {
-    [self setTableFooterText:text textColor:[UIColor darkTextColor] backColor:nil];
+    return [self setTableFooterText:text textColor:[UIColor darkTextColor] backColor:nil];
 }
 
-- (void) setTableFooterText:(NSString *)text
-                  textColor:(UIColor *)textColor
-                  backColor:(UIColor *)backColor
+- (UILabel *) setTableFooterText:(NSString *)text
+                       textColor:(UIColor *)textColor
+                       backColor:(UIColor *)backColor
 {
     if (text.length) {
         
@@ -133,10 +136,13 @@
         self.tableFooterView = [[UIView alloc] initWithFrame:footerRect];
         self.tableFooterView.backgroundColor = backColor;
         [self.tableFooterView addSubview:label];
+
+        return label;
         
     } else {
         
         self.tableFooterView = nil;
+        return nil;
     }
 }
 

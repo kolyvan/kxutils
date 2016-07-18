@@ -37,17 +37,17 @@
                    withStyle:(UITableViewCellStyle)style
                        block:(void(^)(UITableViewCell *cell))block;
 
-- (void) setTableHeaderText:(NSString *)text;
+- (UILabel *) setTableHeaderText:(NSString *)text;
 
-- (void) setTableHeaderText:(NSString *)text
-                  textColor:(UIColor *)textColor
-                  backColor:(UIColor *)backColor;
+- (UILabel *) setTableHeaderText:(NSString *)text
+                       textColor:(UIColor *)textColor
+                       backColor:(UIColor *)backColor;
 
-- (void) setTableFooterText:(NSString *)text;
+- (UILabel *) setTableFooterText:(NSString *)text;
 
-- (void) setTableFooterText:(NSString *)text
-                  textColor:(UIColor *)textColor
-                  backColor:(UIColor *)backColor;
+- (UILabel *) setTableFooterText:(NSString *)text
+                       textColor:(UIColor *)textColor
+                       backColor:(UIColor *)backColor;
 
 - (NSIndexPath *) indexPathFromCellSubview:(UIView *)v;
 
