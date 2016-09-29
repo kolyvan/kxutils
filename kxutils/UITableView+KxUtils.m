@@ -52,31 +52,40 @@
 
 - (UILabel *) setTableHeaderText:(NSString *)text
 {
-    return [self setTableHeaderText:text textColor:[UIColor darkTextColor] backColor:nil];
+    return [self setTableHeaderText:text font:nil textColor:[UIColor darkTextColor] backColor:nil];
 }
 
 - (UILabel *) setTableHeaderText:(NSString *)text
                        textColor:(UIColor *)textColor
                        backColor:(UIColor *)backColor
 {
+    return [self setTableHeaderText:text font:nil textColor:textColor backColor:backColor];
+}
+
+- (UILabel *) setTableHeaderText:(NSString *)text
+                            font:(UIFont *)font
+                       textColor:(UIColor *)textColor
+                       backColor:(UIColor *)backColor
+{
     if (text.length) {
-        
-        UIFontDescriptor *fd = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleCaption1];
-        UIFont *font = [UIFont fontWithDescriptor:fd size:0];
-        
+
+        if (!font) {
+            font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+        }
+
         const CGSize size = self.bounds.size;
         const CGFloat yMargin = 10.f;
         const CGFloat xMargin = 20.f;
         const CGFloat W = size.width - xMargin * 2.f;
-        
+
         const CGFloat H = [text boundingRectWithSize:(CGSize){W, 9999}
                                              options:NSStringDrawingUsesLineFragmentOrigin
                                           attributes:@{ NSFontAttributeName : font, }
                                              context:nil].size.height;
-        
+
         const CGRect footerRect = (CGRect){0, 0, size.width, H + yMargin * 2.0f};
         const CGRect labelRect = (CGRect){xMargin, yMargin, W, H};
-        
+
         UILabel *label = [[UILabel alloc] initWithFrame:labelRect];
         label.text = text;
         label.font = font;
@@ -84,15 +93,15 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = textColor;
         label.numberOfLines = 0;
-        
+
         self.tableHeaderView = [[UIView alloc] initWithFrame:footerRect];
         self.tableHeaderView.backgroundColor = backColor;
         [self.tableHeaderView addSubview:label];
 
         return label;
-        
+
     } else {
-        
+
         self.tableHeaderView = nil;
         return nil;
     }

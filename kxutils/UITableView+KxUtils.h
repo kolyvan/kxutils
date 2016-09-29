@@ -43,6 +43,11 @@
                        textColor:(UIColor *)textColor
                        backColor:(UIColor *)backColor;
 
+- (UILabel *) setTableHeaderText:(NSString *)text
+                            font:(UIFont *)font
+                       textColor:(UIColor *)textColor
+                       backColor:(UIColor *)backColor;
+
 - (UILabel *) setTableFooterText:(NSString *)text;
 
 - (UILabel *) setTableFooterText:(NSString *)text
